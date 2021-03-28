@@ -16,7 +16,7 @@ import {
   RestaurantCard,
 } from './RestaurantInfoCard.styles';
 
-const RestaurantInfoCard = ({ restaurant = {} }) => {
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = 'Some Restaurant',
     icon,
@@ -27,10 +27,10 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemp = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
-  console.log(ratingArray);
 
   return (
     <RestaurantCard elevation={5}>
@@ -40,7 +40,12 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Section>
           <Rating>
             {ratingArray.map((_, i) => (
-              <SvgXml xml={star} width={20} height={20} key={i} />
+              <SvgXml
+                xml={star}
+                width={20}
+                height={20}
+                key={`star-${placeId}-${i}`}
+              />
             ))}
           </Rating>
           <SectionEnd>
