@@ -4,6 +4,7 @@ import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import { Spacer } from '../../../components/spacer/Spacer';
 import { Text } from '../../../components/typography/text';
+import { Favourite } from '../../../components/favourites/Favourite';
 
 import {
   Icon,
@@ -26,7 +27,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     address = '100 random street',
     isOpenNow = true,
     rating = 4,
-    isClosedTemp = true,
+    isClosedTemporarily = true,
     placeId,
   } = restaurant;
 
@@ -34,6 +35,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant='label'>{name}</Text>
@@ -49,7 +51,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
-            {isClosedTemp && <Text variant='error'>CLOSED TEMPORARILY</Text>}
+            {isClosedTemporarily && (
+              <Text variant='error'>CLOSED TEMPORARILY</Text>
+            )}
 
             <Spacer position='left' size='large'>
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
